@@ -13,7 +13,7 @@ on:
         required: true
 
 env:
-  IMAGE_NAME: teslapy 
+  IMAGE_NAME: teslapy
 
 jobs:
 
@@ -24,7 +24,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
 
     - name: Log into GitHub Container Registry
     # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
@@ -41,7 +41,7 @@ jobs:
         # Strip "v" prefix from tag name
         [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
         # Use Docker `latest` tag convention
-        [ "$VERSION" == "dcp7065dn" ] && VERSION=latest
+        [ "$VERSION" == "docker" ] && VERSION=latest
         echo IMAGE_ID=$IMAGE_ID
         echo VERSION=$VERSION
         docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
