@@ -5,6 +5,12 @@ on:
     branches: [ "docker" ]
   pull_request:
     branches: [ "docker" ]
+  workflow_dispatch:  
+    inputs:
+      version:
+        description: Test
+        default: v1.0.0
+        required: true
 
 env:
   IMAGE_NAME: teslapy 
